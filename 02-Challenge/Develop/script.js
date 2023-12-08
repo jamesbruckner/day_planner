@@ -29,24 +29,36 @@ function updateCurrentTime() {
 setInterval(updateCurrentTime, 1000);
 
 
-var textInput = document.querySelector("#hour-9 #hour textarea");
-var saveButton = document.querySelector('#saveButton');
-// var text = [];
+// var textInput = document.querySelector("#hour-9 #hour textarea");
+// var saveButton = document.querySelector('#saveButton');
+// // var text = [];
 
-saveButton.addEventListener('click', function (event) {
-  event.preventDefault();
-  localStorage.setItem("hour-9", JSON.stringify(textInput.value));
-});
+// saveButton.addEventListener('click', function (event) {
+//   event.preventDefault();
+//   localStorage.setItem("hour-9", JSON.stringify(textInput.value));
+// });
 
-function init() {
-  var storedText = JSON.parse(localStorage.getItem('hour-9'));
-  if (storedText !== null) {
-    text = document.querySelector("#hour-9 textarea");
-    text.innerText = storedText
-  }
-  console.log(storedText)
-}
-init()
+// function init() {
+//   var storedText = JSON.parse(localStorage.getItem('hour-9'));
+//   if (storedText !== null) {
+//     text = document.querySelector("#hour-9 textarea");
+//     text.innerText = storedText
+//   }
+//   console.log(storedText)
+// }
+// init()
+
+$(document).ready(function () {
+  $(".saveButton").click(function (event) {
+      var value = $(this).siblings(".description").val();
+      var time = $(this).parent().attr("id");
+      event.preventDefault();
+      localStorage.setItem(time, value);
+
+      console.log(value)
+      console.log(time)
+  })
+})
 
 function checkTime() {
   var currentTime = dayjs().$H
@@ -73,3 +85,17 @@ checkTime();
 //document.getElementsByClassName('time-block') <-- anohter option
 
 //i was very close to getting this all to work but i had to trash everything and i blame the tutor i had. 
+
+//this still doesnt work and it never will but I know how to do it.
+
+function init() {
+$("#hour-09 textarea").val(localStorage.getItem('hour-09'));
+$("#hour-10 textarea").val(localStorage.getItem('hour-10'));
+$("#hour-11 textarea").val(localStorage.getItem('hour-11'));
+$("#hour-12 textarea").val(localStorage.getItem('hour-12'));
+$("#hour-13 textarea").val(localStorage.getItem('hour-13'));
+$("#hour-14 textarea").val(localStorage.getItem('hour-14'));
+$("#hour-15 textarea").val(localStorage.getItem('hour-15'));
+$("#hour-16 textarea").val(localStorage.getItem('hour-16'));
+$("#hour-17 textarea").val(localStorage.getItem('hour-17'));
+}
